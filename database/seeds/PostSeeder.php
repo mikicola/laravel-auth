@@ -16,15 +16,33 @@ class PostSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $title = 'prova con titoli uguali';
+        Post::create([
+            'title'     => $title,
+            'content'   => $faker->text(rand(100, 500)),
+            'slug'      => Post::generateSlug($title)
+        ]);
+        Post::create([
+            'title'     => $title,
+            'content'   => $faker->text(rand(100, 500)),
+            'slug'      => Post::generateSlug($title)
+        ]);
+        Post::create([
+            'title'     => $title,
+            'content'   => $faker->text(rand(100, 500)),
+            'slug'      => Post::generateSlug($title)
+        ]);
+
         for ($i = 0; $i < 100; $i++){
+            // $post = new Post();
             // per ordinare l'url
             $title =$faker->words(rand(2, 10), true);
-            $slug = Str::of($title)->slug('-');
+            // $slug = $post->generateSlug($title);
 
             Post::create([
                 'title'     => $title,
                 'content'   => $faker->text(rand(100, 500)),
-                'slug'      => $slug,
+                'slug'      => Post::generateSlug($title)
             ]);
         }
     }
