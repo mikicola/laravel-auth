@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')
 ->namespace('Admin')
@@ -30,3 +30,7 @@ Route::middleware('auth')
     Route::post('/slugger', 'HomeController@slugger')->name('slugger');
     Route::resource('/posts', 'PostController');
 });
+
+// Route::get("{any?}", function (){
+//     return view("guest.home");
+// })->where("any", ".*");

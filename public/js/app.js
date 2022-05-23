@@ -40146,6 +40146,25 @@ if (btnSlugger) {
   });
 }
 
+var confirmationOverlay = document.querySelector('#confirmation');
+
+if (confirmationOverlay) {
+  document.querySelectorAll('.btn-delete').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var id = this.closest('tr').dataset.id;
+      var confirmationForm = confirmationOverlay.querySelector('form');
+      var strACtion = confirmationForm.dataset.base.replace('*****', id);
+      confirmationForm.action = strACtion;
+      confirmationOverlay.classList.remove('d-none');
+    });
+  });
+  var btnNo = document.querySelector('#btn-no');
+  btnNo.addEventListener('click', function () {
+    confirmationForm.action = '';
+    confirmationOverlay.classList.add('d-none');
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

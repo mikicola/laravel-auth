@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{ route(admin.post.create) }}">Create a post</a>
+                    {{-- <a href="{{ route(admin.post.create) }}">Create a post</a> --}}
                 </div>
             </div>
         </div>
