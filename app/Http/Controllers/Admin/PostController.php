@@ -15,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::paginate(20);
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -25,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -36,7 +38,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required!max:100',
+            'slug' => 'required|unique:posts|max:100',
+            'content' => 'required',
+        ]);
+        Post::create($request->all());
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -47,7 +55,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
