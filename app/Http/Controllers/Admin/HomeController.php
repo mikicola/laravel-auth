@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
+
 
 class HomeController extends Controller
 {
@@ -25,4 +27,13 @@ class HomeController extends Controller
     {
         return view('admin.home');
     }
+
+    public function slugger(Request $request)
+    {
+        return response()->json([
+            // passo la stringa da axios(app.js)
+            'slug' => Post::generateSlug($request->all()['originalTitle']),
+        ]);
+    }
+
 }
